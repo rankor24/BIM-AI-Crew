@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { View } from '../types';
 import { DashboardIcon, ProjectsIcon, TasksIcon, InsightsIcon, MeetingsIcon, KnowledgeIcon, SettingsIcon } from './Icons';
@@ -59,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onViewChange }) => {
       </nav>
        <div className="mt-auto p-2 bg-slate-100 rounded-lg">
           <p className="text-sm text-slate-600">Need help?</p>
-          <a href="#" className="text-sm font-semibold text-brand-blue hover:underline">Contact Support</a>
+          <a href="mailto:support@bimai.com" className="text-sm font-semibold text-brand-blue hover:underline">Contact Support</a>
         </div>
     </aside>
   );

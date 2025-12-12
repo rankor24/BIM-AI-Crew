@@ -26,8 +26,15 @@ export const INTEGRATIONS: Integration[] = [
     { id: 'webhookUrl', label: 'Webhook URL', type: 'text' },
   ]},
   { name: 'ActivityWatch', description: 'Tracks time and productivity patterns.', connected: false, settings: [] },
-  { name: 'Obsidian', description: 'Your personal knowledge database.', connected: false, settings: [
-      { id: 'vaultPath', label: 'API Key', type: 'text' }
+  { name: 'Google Drive', description: 'Sync your Obsidian Vault from the cloud.', connected: false, settings: [
+      { 
+        id: 'clientId', 
+        label: 'Client ID', 
+        type: 'text',
+        defaultValue: '267211322657-feed5qqpdnbudvapm63a4c40tk9hb5fd.apps.googleusercontent.com'
+      },
+      { id: 'apiKey', label: 'API Key (Optional)', type: 'password' },
+      { id: 'rootFolderId', label: 'Vault Folder ID (Optional)', type: 'text' }
   ]},
   { 
     name: 'Notion', 

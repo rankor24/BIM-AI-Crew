@@ -1,3 +1,4 @@
+
 export enum TaskStatus {
   ToDo = 'To Do',
   InProgress = 'In Progress',
@@ -72,6 +73,7 @@ export interface IntegrationSetting {
     id: string;
     label: string;
     type: 'text' | 'password' | 'email';
+    defaultValue?: string;
 }
 
 export interface Integration {
@@ -80,4 +82,6 @@ export interface Integration {
     connected: boolean;
     isLoading?: boolean;
     settings?: IntegrationSetting[];
+    accessToken?: string;
+    config?: Record<string, string>;
 }

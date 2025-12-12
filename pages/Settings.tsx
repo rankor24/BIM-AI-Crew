@@ -24,7 +24,7 @@ const IntegrationCard: React.FC<IntegrationCardProps> = ({ integration, onConnec
         action = () => onDisconnectClick(integration.name);
     } else {
         buttonContent = 'Connect';
-        buttonClasses = 'px-3 py-1 text-sm font-semibold text-white bg-brand-blue rounded-full hover:bg-blue-700';
+        buttonClasses = 'px-3 py-1 text-sm font-semibold text-white bg-brand-blue rounded-full hover:bg-blue-700 transition-colors shadow-sm';
         action = () => onConnectClick(integration);
     }
 
@@ -32,12 +32,13 @@ const IntegrationCard: React.FC<IntegrationCardProps> = ({ integration, onConnec
       'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-500', 
       'bg-amber-500', 'bg-pink-500', 'bg-sky-500', 'bg-indigo-500'
     ];
-    const color = colorVariants[integration.name.length % colorVariants.length];
-
+    // Specific color override for Google Drive to match brand
+    const bgColor = integration.name === 'Google Drive' ? 'bg-[#4285F4]' : colorVariants[integration.name.length % colorVariants.length];
+    
     return (
-        <div className="flex items-center justify-between p-4 border rounded-lg">
+        <div className="flex items-center justify-between p-4 border rounded-lg hover:shadow-sm transition-shadow bg-white">
             <div className="flex items-center">
-                <div className={`w-10 h-10 rounded-md mr-4 flex items-center justify-center font-bold text-white text-lg ${color}`}>
+                <div className={`w-10 h-10 rounded-md mr-4 flex items-center justify-center font-bold text-white text-lg ${bgColor} shadow-sm`}>
                     {integration.name.charAt(0)}
                 </div>
                 <div>
@@ -73,6 +74,10 @@ const Settings: React.FC<SettingsProps> = ({ integrations, onConnect, onDisconne
     }
   };
 
+  const handleConnectClick = (integration: Integration) => {
+    setConfiguringIntegration(integration);
+  };
+
   const integrationToConfigure = integrations.find(i => i.name === configuringIntegration?.name);
 
   return (
@@ -84,7 +89,7 @@ const Settings: React.FC<SettingsProps> = ({ integrations, onConnect, onDisconne
                 <IntegrationCard 
                     key={integration.name} 
                     integration={integration} 
-                    onConnectClick={setConfiguringIntegration}
+                    onConnectClick={handleConnectClick}
                     onDisconnectClick={onDisconnect}
                 />
             )}
